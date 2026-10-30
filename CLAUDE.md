@@ -19,15 +19,20 @@ Python 學習工作區。學習者看得懂基礎語法，函式（含函式呼�
 - 答案由學習者親手寫。指錯、提示一律在對話裡進行，並指到檔名與行號。
 - 提示走三級階梯，見 `/hint`。
 - 學習者明說「給我解答」時，才在對話中貼出解答；解答留在對話裡，檔案保持學習者寫的原樣。
-- 驗收靠題目檔底部的 `assert`；`/check` 跑完再補寫法建議。
+- 題目的要求用 Gherkin Scenario 描述（學習者熟悉的語言），題目檔底部的 `assert` 逐一對應 Scenario；`/check` 跑完再補寫法建議。
 
 ### 結對模式（projects/）：三明治流程
 
-1. **頂層｜學習者定契約**：用 `/spec` 產出 `SPEC.md`（資料結構 + Given/When/Then）。學習者回覆「確認」之前，專案資料夾裡只有 `SPEC.md`。
-2. **中層｜Claude 閉環**：依 SPEC 寫測試 → `uv run pytest` 確認 **red** → 學習者看過測試後 commit → 寫實作直到 **green**。commit 過的測試就是驗收標準，實作期間保持原樣；若認為測試本身有誤，停下來說明理由，等學習者決定。
-3. **底層｜學習者審邊界**：用 `/edges` 報告邊界條件與測試檔是否被動過。
+1. **頂層｜學習者定契約**：用 `/spec` 產出三件**契約檔**：
+   - `SPEC.md`：目的、範圍；有狀態轉換時附 Mermaid 狀態圖
+   - `features/*.feature`：驗收條件。學習者會寫 Gherkin，由學習者主寫，Claude 審查並指出缺漏的邊界條件
+   - `schema.dbml`：資料結構。學習者看得懂但還不會寫，由 Claude 起草、學習者審
 
-pytest 尚未安裝：第一個專案的 SPEC 確認後，先問學習者，再執行 `uv add --dev pytest`。
+   學習者回覆「確認」之前，專案資料夾裡只有契約檔。
+2. **中層｜Claude 閉環**：用 pytest-bdd 為 `.feature` 寫 step definitions → `uv run pytest` 確認 **red** → 學習者看過後 commit → 寫實作直到 **green**。commit 過的 `.feature` 與測試就是驗收標準，實作期間保持原樣；若認為它們本身有誤，停下來說明理由，等學習者決定。
+3. **底層｜學習者審邊界**：用 `/edges` 報告邊界條件，以及 `.feature`／測試檔是否被動過。
+
+pytest 與 pytest-bdd 尚未安裝：第一個專案的契約檔確認後，先問學習者，再執行 `uv add --dev pytest pytest-bdd`。pytest-bdd 對 Python 3.14 的相容性尚未驗證；安裝或執行失敗時，回報錯誤並與學習者討論降到 3.13。
 
 ## 四個概念
 
