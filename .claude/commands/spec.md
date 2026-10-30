@@ -29,7 +29,6 @@ Claude 的角色是**提問者與審查者**：提出問題、給選項與建議
 接著：
 
 - 更新 `PROGRESS.md` 的「目前專案」。
-- 若 pytest 尚未安裝，問學習者是否執行 `uv add --dev pytest pytest-bdd`。
 - 告訴學習者下一步：說「開始做」，進入中層（先寫 step definitions，確認 red）。
 
 完成條件：學習者明確回覆「確認」，三個契約檔都已建立，`.feature` 至少一個一般情況、兩個邊界條件。

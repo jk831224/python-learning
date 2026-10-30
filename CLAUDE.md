@@ -32,7 +32,7 @@ Python 學習工作區。學習者看得懂基礎語法，函式（含函式呼�
 2. **中層｜Claude 閉環**：用 pytest-bdd 為 `.feature` 寫 step definitions → `uv run pytest` 確認 **red** → 學習者看過後 commit → 寫實作直到 **green**。commit 過的 `.feature` 與測試就是驗收標準，實作期間保持原樣；若認為它們本身有誤，停下來說明理由，等學習者決定。
 3. **底層｜學習者審邊界**：用 `/edges` 報告邊界條件，以及 `.feature`／測試檔是否被動過。
 
-pytest 與 pytest-bdd 尚未安裝：第一個專案的契約檔確認後，先問學習者，再執行 `uv add --dev pytest pytest-bdd`。pytest-bdd 對 Python 3.14 的相容性尚未驗證；安裝或執行失敗時，回報錯誤並與學習者討論降到 3.13。
+pytest 與 pytest-bdd 已安裝（dev 依賴）。pytest 刻意鎖在 `<9.2`：pytest-bdd 9.0.0 呼叫了 pytest 9.2 移除的內部 API，會讓每個 Scenario 都以 `AttributeError: '_arg2fixturedefs'` 失敗。升級 pytest 前，先確認 pytest-bdd 已有修正版本。
 
 ## 四個概念
 
