@@ -1,3 +1,20 @@
+---
+title: 幕後：pytest 與 pytest-bdd 是怎麼運作的
+type: note
+kind: tool-internals
+created: 2026-10-31
+updated: 2026-10-31
+concepts: []
+topics: [pytest, pytest-bdd, conftest.py, sys.path, 測試探索, scenarios, 裝飾器, fixture, 依賴注入, assert 改寫, uv run, 虛擬環境]
+sources:
+  - projects/order_api/conftest.py
+  - projects/order_api/tests/test_add_order.py
+  - projects/order_api/features/add_order.feature
+related:
+  - notes/order-api-stage1-review.md
+verified_with: [pytest 9.1.1, pytest-bdd 9.0.0]
+---
+
 # 幕後：pytest 與 pytest-bdd 是怎麼運作的
 
 [order-api-stage1-review.md](order-api-stage1-review.md) 教你看懂「我們寫的測試程式碼」。這份往下挖一層：**工具本身**怎麼做到的。例如 pytest 怎麼知道要跑哪些檔案、`@given` 貼上去之後到底發生了什麼。

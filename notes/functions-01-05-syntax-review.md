@@ -1,3 +1,21 @@
+---
+title: 複習：函式練習 01–05 用到的 Python 語法
+type: note
+kind: syntax-review
+created: 2026-10-31
+updated: 2026-10-31
+concepts: [資料流, API 契約, 邊界條件]
+topics: [def, 參數, return, print, 縮排, 變數, dict, if, 比較運算, list, for, None, len, append, 索引, 方法, assert]
+sources:
+  - exercises/functions/01_calculate_total.py
+  - exercises/functions/02_create_order.py
+  - exercises/functions/03_order_with_shipping.py
+  - exercises/functions/04_find_order.py
+  - exercises/functions/05_add_order.py
+related:
+  - notes/order-api-stage1-review.md
+---
+
 # 複習：函式練習 01–05 用到的 Python 語法
 
 這份不用背。目標是**看到程式碼能翻成一句中文**。你用 AI Tab 補完程式碼時，也可以照這份把補出來的每一行翻成白話；翻得出來，代表你看懂了，翻不出來，就回來查這份。

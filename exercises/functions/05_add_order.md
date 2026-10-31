@@ -1,3 +1,16 @@
+---
+title: 05 輔助材料：一筆訂單長什麼樣子
+type: exercise-aid
+exercise: exercises/functions/05_add_order.py
+format: dbml
+created: 2026-10-31
+updated: 2026-10-31
+concepts: [資料流]
+topics: [dict, list, DBML]
+sources: [exercises/functions/05_add_order.py]
+related: [notes/functions-01-05-syntax-review.md]
+---
+
 # 05 輔助材料：一筆訂單長什麼樣子
 
 下面是用 DBML 寫的「訂單」表格定義。DBML 是描述資料表的格式，你可以把它想成 Excel 表頭：每一行是一個欄位，寫著欄位名稱、型別和說明。

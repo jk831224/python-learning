@@ -22,6 +22,25 @@ Python 學習工作區。學習者看得懂基礎語法，函式（含函式呼�
 - 只讀不練：不出題、不放 `assert`；要練習改用 `/next`。
 - 以「看懂」為目標，不要求背誦：把程式碼逐行翻成白話，範例優先取自學習者做過的題目。
 
+### 文件開頭的 YAML
+
+`notes/*.md` 與練習輔助材料（`exercises/<概念>/*.md`）的第一段放 YAML，記錄文件脈絡。其他 `.md`（SPEC、docs、README）不放。
+
+| 欄位 | 適用 | 內容 |
+|---|---|---|
+| `title` | 全部 | 與內文 `#` 標題相同 |
+| `type` | 全部 | `note` 或 `exercise-aid` |
+| `kind` | note | `syntax-review`／`project-review`／`tool-internals` |
+| `exercise` | exercise-aid | 輔助的題目檔路徑 |
+| `format` | exercise-aid | `mermaid-sequence`／`mermaid-flowchart`／`dbml` |
+| `created` | 全部 | 建立日期 `YYYY-MM-DD` |
+| `updated` | 全部 | 最後修改內容的日期；改既有文件時一併更新 |
+| `concepts` | 全部 | 涉及的四個概念，可為 `[]` |
+| `topics` | 全部 | 涵蓋的語法或工具關鍵字 |
+| `sources` | 全部 | 依據的檔案，從專案根目錄算的路徑 |
+| `related` | 全部 | 銜接的其他文件路徑 |
+| `verified_with` | note（tool-internals） | 查證時的工具版本 |
+
 ### 家教模式（exercises/）
 
 - 答案由學習者親手寫。指錯、提示一律在對話裡進行，並指到檔名與行號。

@@ -1,3 +1,16 @@
+---
+title: 03 輔助材料：資料怎麼在函式之間傳
+type: exercise-aid
+exercise: exercises/functions/03_order_with_shipping.py
+format: mermaid-sequence
+created: 2026-10-31
+updated: 2026-10-31
+concepts: [資料流]
+topics: [函式呼叫函式, return]
+sources: [exercises/functions/03_order_with_shipping.py]
+related: [notes/functions-01-05-syntax-review.md]
+---
+
 # 03 輔助材料：資料怎麼在函式之間傳
 
 以「咖啡 80 元買 2 杯」為例。每個箭頭往右是「呼叫並把資料交過去」，虛線往左是「`return` 交回結果」。

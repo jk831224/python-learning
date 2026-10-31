@@ -1,3 +1,16 @@
+---
+title: 04 輔助材料：一筆一筆找的流程
+type: exercise-aid
+exercise: exercises/functions/04_find_order.py
+format: mermaid-flowchart
+created: 2026-10-31
+updated: 2026-10-31
+concepts: [邊界條件]
+topics: [for, if, return, None]
+sources: [exercises/functions/04_find_order.py]
+related: [notes/functions-01-05-syntax-review.md]
+---
+
 # 04 輔助材料：一筆一筆找的流程
 
 以 `find_order(orders, 2)` 為例：先看第 1 筆（id 是 1，不是）→ 再看第 2 筆（id 是 2，是！）→ 立刻交回，第 3 筆不用看了。

@@ -1,3 +1,26 @@
+---
+title: 複習：訂單 API 第 1 階段（order_api）
+type: note
+kind: project-review
+created: 2026-10-31
+updated: 2026-10-31
+concepts: [資料流, 狀態機, API 契約, 邊界條件]
+topics: [三明治流程, Gherkin, pytest-bdd, strip, raise, try/except, input, int/float, while, elif, f-string, import, pass, or, 裝飾器, fixture, 正規表示式, list comprehension, range, type]
+sources:
+  - projects/order_api/SPEC.md
+  - projects/order_api/schema.dbml
+  - projects/order_api/features/add_order.feature
+  - projects/order_api/features/find_order.feature
+  - projects/order_api/order_api.py
+  - projects/order_api/clerk.py
+  - projects/order_api/conftest.py
+  - projects/order_api/tests/test_add_order.py
+  - projects/order_api/tests/test_find_order.py
+related:
+  - notes/functions-01-05-syntax-review.md
+  - notes/pytest-bdd-how-it-works.md
+---
+
 # 複習：訂單 API 第 1 階段（order_api）
 
 這份整理 2026-10-31 這一整輪：從函式練習，到定契約、寫測試、實作、審邊界、親手修 bug、店員程式驗收。
