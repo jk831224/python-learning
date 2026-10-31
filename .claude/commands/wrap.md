@@ -1,5 +1,5 @@
 ---
-description: 結束今天的學習：更新 PROGRESS.md 並 commit
+description: 結束今天的學習：更新 PROGRESS.md，commit 並 push
 ---
 
 收尾這次學習。
@@ -13,6 +13,6 @@ description: 結束今天的學習：更新 PROGRESS.md 並 commit
    5. 下次從哪裡接續：具體到下一個指令或題目檔
 3. 把 `PROGRESS.md` 的變動摘要給學習者看。
 4. `git add` 這次新增或修改的檔案，`git commit`，訊息用繁體中文簡述今天學了什麼。
-5. 提醒學習者：要上傳到 GitHub 時，自己執行 `git push`。
+5. `git push` 到 GitHub。
 
-完成條件：PROGRESS.md 五區都反映這次的進展、commit 成功、學習者看過變動摘要。
+完成條件：PROGRESS.md 五區都反映這次的進展、commit 並 push 成功、學習者看過變動摘要。

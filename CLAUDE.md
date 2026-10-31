@@ -55,4 +55,4 @@ pytest 與 pytest-bdd 已安裝（dev 依賴）。pytest 刻意鎖在 `<9.2`：p
 
 - 執行：`uv run python <檔案>`。Python 3.14，由 uv 管理（`.venv`）。
 - 安裝套件：先問學習者，再 `uv add <套件>`。
-- `git push` 由學習者手動執行；Claude 做到 commit 為止。
+- Claude 可以 commit 並 push。

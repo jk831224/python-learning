@@ -75,7 +75,7 @@
 
 ### 護欄
 
-- `.claude/settings.json`：Claude 可以自己執行程式與 commit；安裝套件要先問我；`git push` 與 `rm -rf` 一律禁止
+- `.claude/settings.json`：Claude 可以自己執行程式、commit 並 push；安裝套件要先問我；`rm -rf` 一律禁止
 - 專案的測試確認後先 commit，之後若被改動，`git diff` 一定看得到，`/edges` 也會主動回報
 
 ## 一次學習的樣子
@@ -85,8 +85,7 @@
 （自己寫）    → uv run python exercises/functions/01_xxx.py
 /hint        → 卡住時拿提示
 /check       → 批改，看哪個 Scenario 沒過
-/wrap        → 更新 PROGRESS.md 並 commit
-git push     → 自己推上 GitHub
+/wrap        → 更新 PROGRESS.md，commit 並 push 到 GitHub
 ```
 
 ## 想用這套方法？
