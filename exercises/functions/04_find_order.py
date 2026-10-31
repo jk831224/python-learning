@@ -35,10 +35,18 @@ orders = [
     {"id": 2, "item": "蛋糕", "status": "已付款"},
     {"id": 3, "item": "禮盒", "status": "已出貨"},
 ]
-
+ 
 
 # === 你的答案（從這裡開始寫）===
-
+def find_order(orders, order_id): #定義一個函式，回傳符合編號的訂單 dict；找不到時回傳 None，名字叫 find_order，接收兩個參數 orders（訂單列表）、order_id（訂單編號），回傳一個 dict，表示那一筆訂單
+  for order in orders: #逐筆檢查 orders 
+    if order["id"] == order_id: #如果訂單編號等於 order_id，則回傳那一筆訂單
+      return order #回傳那一筆訂單
+  return None #如果全部檢查完都沒找到，則回傳 None
+print(find_order(orders, 2)) #範例：find_order(orders, 2) → {"id": 2, "item": "蛋糕", "status": "已付款"}
+print(find_order(orders, 3)) #範例：find_order(orders, 3) → {"id": 3, "item": "禮盒", "status": "已出貨"}
+print(find_order(orders, 99)) #範例：find_order(orders, 99) → None
+print(find_order([], 1)) #範例：find_order([], 1) → None
 
 # === 答案結束 ===
 
