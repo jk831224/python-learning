@@ -22,7 +22,7 @@
 - `len()` 與 `list.append()`，用變數存中間結果（functions/05）
 - 字串的 `.strip()`：先去掉前後空白再比對（order_api 空白商品名稱修正；經第 3 級提示後看解答完成）
 
-見過但尚未練習（Claude 寫的程式裡出現過）：`raise ValueError`、`input()`、`while True`、`try / except`、f-string
+見過但尚未練習（Claude 寫的程式裡出現過，已有教材逐行解說，見 [notes/order-api-stage1-review.md](notes/order-api-stage1-review.md)）：`raise ValueError`、`input()`、`while True`、`try / except`、f-string、`import`、裝飾器、fixture、正規表示式、list comprehension
 
 ## 3. 四個概念的掌握程度
 
@@ -53,6 +53,9 @@
 ## 5. 下次從哪裡接續
 
 - 輸入 `/spec`，定義 (c) 的 B 階段：FastAPI 把 order_api 放上 HTTP ＋ AI 撰寫的店員網頁
-- 進 B 階段前可先處理（擇一或都不做）：
-  - 請 Claude 寫 `notes/` 教材，說明店員程式裡的 `input()`、`while True`、`try / except`
-  - README「想達成的效果」的專案路線仍是舊順序，尚未更新
+- 開始前想複習，讀 `notes/`（2026-10-31 已寫好三份，開頭 YAML 標明脈絡）：
+  - [functions-01-05-syntax-review.md](notes/functions-01-05-syntax-review.md)：函式練習用到的語法
+  - [order-api-stage1-review.md](notes/order-api-stage1-review.md)：訂單 API 第 1 階段全貌、店員程式與測試程式碼逐行解說
+  - [pytest-bdd-how-it-works.md](notes/pytest-bdd-how-it-works.md)：pytest／pytest-bdd 幕後運作
+- 想要新的教材：`/note <主題>`
+- 待處理：README「想達成的效果」的專案路線仍是舊順序，尚未更新
