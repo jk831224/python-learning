@@ -1,0 +1,10 @@
+Table orders {
+  id         int     [pk, not null, note: 'API 自動產生，從 1 開始遞增。例：1']
+  item       varchar [not null, note: '店員給。商品名稱，不能是空字串。例：咖啡']
+  quantity   int     [not null, note: '店員給。數量，0 以上的整數。例：2']
+  price      int     [not null, note: '店員給。單價（元），0 以上；有小數時四捨五入，.5 進位。例：80']
+  total      int     [not null, note: 'API 計算：price × quantity。例：160']
+  shipping   int     [not null, note: 'API 計算：total 滿 500 為 0，未滿 500 為 60。例：60']
+  amount_due int     [not null, note: 'API 計算：total + shipping。例：220']
+  status     varchar [not null, note: 'API 決定：新訂單一律是 待付款']
+}
