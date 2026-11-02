@@ -7,7 +7,7 @@
 - 店員網頁（GET /）：
   - 兩個區塊，名稱是「新增訂單」「查詢訂單」
   - 新增區有「商品」「數量」「單價」三個欄位和「新增」按鈕；查詢區有「訂單編號」欄位和「查詢」按鈕
-  - 訂單用表格顯示，每一列左邊是欄位中文名（th），右邊是值（td）
+  - 訂單用表格顯示，放在名稱是「訂單資料」的區塊；每一列左邊是欄位中文名（th），右邊是值（td）
   - 「付款」「取消」按鈕
   - 錯誤訊息放在 role="alert" 的元素裡，紅字
 """
@@ -334,3 +334,8 @@ def page_has_no_text(page, text):
 @then("沒有跳出任何彈出視窗")
 def no_dialogs(order_context):
     assert order_context["dialogs"] == []
+
+
+@then("畫面上沒有顯示訂單資料")
+def page_hides_order(page):
+    expect(page.get_by_role("region", name="訂單資料")).to_be_hidden()
