@@ -8,9 +8,9 @@
   (c) 迷你訂單 API 先做 → (a) Excel／CSV 自動化 → (b) 呼叫 Claude API 做文件摘要工具
 - (c) 的分階段：
   1. ✅ 本機版 API：[projects/order_api/](projects/order_api/)，2026-10-31 完成（17 個 Scenario 全部 green、店員程式由學習者親手驗收）
-  2. 網路版 API（B 階段）：用 FastAPI 把同一份契約放上 HTTP，店員網頁由 AI 撰寫（安裝套件前先問）
-  3. 加訂單狀態規則（待付款 → 已付款 → 已出貨）與錯誤回應
-- 目前專案：(c) 第 1 階段三明治三層都已走完；下一步是 B 階段的頂層（另開 SPEC）
+  2. 網路版 API（B 階段）：[projects/order_api_web/](projects/order_api_web/)，2026-11-02 SPEC 確認。範圍擴大為 FastAPI ＋ SQLite 永久保存 ＋ 狀態機（待付款 → 已付款／已取消，已付款 → 已退款），店員網頁由 AI 撰寫並用 Playwright 自動測試（安裝套件前先問）
+  3. 狀態規則的後續：出貨、送達、逾時自動取消（第 2 階段已先做付款與取消）
+- 目前專案：(c) B 階段，頂層契約檔已確認（6 個 `.feature`、46 個 Scenario；這次 Gherkin 由 Claude 起草、學習者審）；下一步是中層：寫 step definitions，確認 red
 
 ## 2. 已掌握的語法
 
