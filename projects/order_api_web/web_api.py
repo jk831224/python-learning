@@ -9,7 +9,7 @@ from pathlib import Path
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 HERE = Path(__file__).parent
 
@@ -24,9 +24,10 @@ TRANSITIONS = {
 class NewOrder(BaseModel):
     # 店員寄來的信；不是數字或缺欄位時，FastAPI 會自動回 422
     # 用 float 而不是 int：數量 2.4 要能收進來，才回得出中文的「數量必須是整數」
+    # allow_inf_nan=False：無限大和 nan 也算不是數字，在這裡就回 422，進不到計算
     item: str
-    quantity: float
-    price: float
+    quantity: float = Field(allow_inf_nan=False)
+    price: float = Field(allow_inf_nan=False)
 
 
 def round_half_up(number):
@@ -47,8 +48,12 @@ def validate(order):
         return "數量必須是整數"
     if order.quantity < 0:
         return "數量不能是負數"
+    if order.quantity > 99:
+        return "數量不能超過 99"
     if order.price < 0:
         return "單價不能是負數"
+    if order.price > 99999:  # 用原本的值比：99999.4 也算超過
+        return "單價不能超過 99999"
     if order.item.strip() == "":
         return "商品名稱不能是空的"
     return None
@@ -113,7 +118,7 @@ def create_app(db_path):
             cursor = connection.execute(
                 "INSERT INTO orders (item, quantity, price, total, shipping, amount_due, status)"
                 " VALUES (?, ?, ?, ?, ?, ?, ?)",
-                (order.item, quantity, price, total, shipping, total + shipping, "待付款"),
+                (order.item.strip(), quantity, price, total, shipping, total + shipping, "待付款"),
             )
             return load_order(connection, cursor.lastrowid)  # lastrowid：資料庫剛發的編號
 

@@ -64,8 +64,8 @@
     let currentId = null;
 
     function toNumber(text) {
-      // 不是數字（含沒填）回傳 null；網頁先擋，不送出
-      if (text.trim() === "" || isNaN(Number(text))) {
+      // 不是數字（含沒填、Infinity）回傳 null；網頁先擋，不送出
+      if (text.trim() === "" || !Number.isFinite(Number(text))) {
         return null;
       }
       return Number(text);
