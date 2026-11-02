@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>小店訂單系統</title>
+  <style>
+    body { font-size: 24px; font-family: sans-serif; max-width: 720px; margin: 0 auto; padding: 16px; line-height: 1.6; }
+    section { border: 2px solid #888; border-radius: 12px; padding: 16px; margin-bottom: 24px; }
+    h1 { font-size: 36px; }
+    h2 { font-size: 30px; margin-top: 0; }
+    label { display: block; margin-bottom: 12px; }
+    input { font-size: 24px; padding: 8px; width: 100%; box-sizing: border-box; }
+    button { font-size: 28px; padding: 12px 32px; margin-right: 12px; border-radius: 8px; cursor: pointer; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 16px; }
+    th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ccc; }
+    th { width: 40%; }
+    .highlight td { font-size: 40px; font-weight: bold; }
+    .error { color: #c00; font-weight: bold; min-height: 1em; }
+  </style>
+</head>
+<body>
+  <h1>小店訂單系統</h1>
+
+  <section aria-labelledby="add-title">
+    <h2 id="add-title">新增訂單</h2>
+    <label>商品 <input id="add-item"></label>
+    <!-- 用 type="text" 而不是 number：打錯字時要由我們自己顯示「請輸入數字」 -->
+    <label>數量 <input id="add-quantity" inputmode="decimal"></label>
+    <label>單價 <input id="add-price" inputmode="decimal"></label>
+    <button id="add-button">新增</button>
+    <p class="error" role="alert" id="add-error"></p>
+  </section>
+
+  <section aria-labelledby="find-title">
+    <h2 id="find-title">查詢訂單</h2>
+    <label>訂單編號 <input id="find-id" inputmode="numeric"></label>
+    <button id="find-button">查詢</button>
+    <p class="error" role="alert" id="find-error"></p>
+  </section>
+
+  <section aria-labelledby="order-title" id="order-section" hidden>
+    <h2 id="order-title">訂單資料</h2>
+    <table>
+      <tbody id="order-rows"></tbody>
+    </table>
+    <button id="pay-button">付款</button>
+    <button id="cancel-button">取消</button>
+    <p class="error" role="alert" id="order-error"></p>
+  </section>
+
+  <script>
+    // 欄位中文名稱對照（SPEC「店員網頁」）
+    const LABELS = [
+      ["id", "訂單編號"],
+      ["item", "商品"],
+      ["quantity", "數量"],
+      ["price", "單價"],
+      ["total", "小計"],
+      ["shipping", "運費"],
+      ["amount_due", "應付金額"],
+      ["status", "狀態"],
+    ];
+    let currentId = null;
+
+    function toNumber(text) {
+      // 不是數字（含沒填）回傳 null；網頁先擋，不送出
+      if (text.trim() === "" || isNaN(Number(text))) {
+        return null;
+      }
+      return Number(text);
+    }
+
+    function showOrder(order) {
+      currentId = order.id;
+      const rows = document.getElementById("order-rows");
+      rows.innerHTML = "";
+      for (const [key, label] of LABELS) {
+        const row = rows.insertRow();
+        if (key === "id") {
+          row.className = "highlight";  // 客人之後要靠編號查，特別醒目
+        }
+        const th = document.createElement("th");
+        th.textContent = label;
+        row.appendChild(th);
+        row.insertCell().textContent = order[key];
+      }
+      document.getElementById("order-section").hidden = false;
+    }
+
+    function showError(id, message) {
+      document.getElementById(id).textContent = message;
+    }
+
+    function clearErrors() {
+      for (const id of ["add-error", "find-error", "order-error"]) {
+        showError(id, "");
+      }
+    }
+
+    async function send(method, url, body) {
+      // 寄信給 API；成功回傳訂單，失敗丟出錯誤訊息（API 回信裡的 detail）
+      const options = { method, headers: { "Content-Type": "application/json" } };
+      if (body !== undefined) {
+        options.body = JSON.stringify(body);
+      }
+      const response = await fetch(url, options);
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.detail);
+      }
+      return data;
+    }
+
+    document.getElementById("add-button").addEventListener("click", async () => {
+      clearErrors();
+      const item = document.getElementById("add-item").value;
+      const quantity = toNumber(document.getElementById("add-quantity").value);
+      const price = toNumber(document.getElementById("add-price").value);
+      if (quantity === null || price === null) {
+        showError("add-error", "請輸入數字");
+        return;
+      }
+      try {
+        showOrder(await send("POST", "/orders", { item, quantity, price }));
+      } catch (error) {
+        showError("add-error", error.message);
+      }
+    });
+
+    document.getElementById("find-button").addEventListener("click", async () => {
+      clearErrors();
+      const id = toNumber(document.getElementById("find-id").value);
+      // 編號只會是整數；1.5 這種也當作「不是編號」，在網頁就擋下
+      if (id === null || !Number.isInteger(id)) {
+        showError("find-error", "請輸入數字");
+        return;
+      }
+      try {
+        showOrder(await send("GET", `/orders/${id}`));
+      } catch (error) {
+        document.getElementById("order-section").hidden = true;
+        showError("find-error", error.message);
+      }
+    });
+
+    for (const [buttonId, action] of [["pay-button", "pay"], ["cancel-button", "cancel"]]) {
+      document.getElementById(buttonId).addEventListener("click", async () => {
+        clearErrors();
+        try {
+          showOrder(await send("POST", `/orders/${currentId}/${action}`));
+        } catch (error) {
+          showError("order-error", error.message);
+        }
+      });
+    }
+  </script>
+</body>
+</html>
