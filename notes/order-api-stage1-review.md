@@ -3,7 +3,7 @@ title: 複習：訂單 API 第 1 階段（order_api）
 type: note
 kind: project-review
 created: 2026-10-31
-updated: 2026-10-31
+updated: 2026-11-02
 concepts: [資料流, 狀態機, API 契約, 邊界條件]
 topics: [三明治流程, Gherkin, pytest-bdd, strip, raise, try/except, input, int/float, while, elif, f-string, import, pass, or, 裝飾器, fixture, 正規表示式, list comprehension, range, type]
 sources:
@@ -19,6 +19,7 @@ sources:
 related:
   - notes/functions-01-05-syntax-review.md
   - notes/pytest-bdd-how-it-works.md
+  - notes/order-api-web-backend-review.md
 ---
 
 # 複習：訂單 API 第 1 階段（order_api）

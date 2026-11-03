@@ -3,7 +3,7 @@ title: 幕後：pytest 與 pytest-bdd 是怎麼運作的
 type: note
 kind: tool-internals
 created: 2026-10-31
-updated: 2026-10-31
+updated: 2026-11-02
 concepts: []
 topics: [pytest, pytest-bdd, conftest.py, sys.path, 測試探索, scenarios, 裝飾器, fixture, 依賴注入, assert 改寫, uv run, 虛擬環境]
 sources:
@@ -12,6 +12,7 @@ sources:
   - projects/order_api/features/add_order.feature
 related:
   - notes/order-api-stage1-review.md
+  - notes/order-api-web-backend-review.md
 verified_with: [pytest 9.1.1, pytest-bdd 9.0.0]
 ---
 

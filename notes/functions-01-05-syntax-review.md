@@ -3,7 +3,7 @@ title: 複習：函式練習 01–05 用到的 Python 語法
 type: note
 kind: syntax-review
 created: 2026-10-31
-updated: 2026-10-31
+updated: 2026-11-02
 concepts: [資料流, API 契約, 邊界條件]
 topics: [def, 參數, return, print, 縮排, 變數, dict, if, 比較運算, list, for, None, len, append, 索引, 方法, assert]
 sources:
@@ -14,6 +14,7 @@ sources:
   - exercises/functions/05_add_order.py
 related:
   - notes/order-api-stage1-review.md
+  - notes/order-api-web-backend-review.md
 ---
 
 # 複習：函式練習 01–05 用到的 Python 語法
